@@ -18,11 +18,28 @@
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/users/register">Register</a></li>
-            <li><a href="/users/login">Login</a></li>            
-          </ul>
+          @if (Auth::guest())
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member <span class="caret"></span></a>          
+            <ul class="dropdown-menu" role="menu">            
+              <li><a href="/register">Register</a></li>
+              <li><a href="/login">Login</a></li>            
+            </ul>
+          @else
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {{ Auth::user()->name }} <span class="caret"></span></a>          
+            <ul class="dropdown-menu" role="menu">            
+              <li>
+                <a href="{{ route('logout') }}" 
+                    onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+              </li>         
+            </ul>
+          @endif
         </li>
       </ul>      
     </div><!-- /.navbar-collapse -->

@@ -52,5 +52,6 @@
 			</fieldset>
 		</form>
 	</div>
+
 </div>
 @endsection
