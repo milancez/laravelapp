@@ -31,3 +31,8 @@ Route::post('/comment', 'CommentsController@newComment');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'manager'), function () {
+	Route::get('users', 'UsersController@index');
+});
+
