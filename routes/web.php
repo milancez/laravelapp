@@ -39,6 +39,7 @@ Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 
 	Route::post('roles/create', 'RolesController@store');
 	Route::get('users/{id?}/edit', 'UsersController@edit');
 	Route::post('users/{id?}/edit','UsersController@update');
+	Route::get('/', 'PagesController@home');
 });
 
 
